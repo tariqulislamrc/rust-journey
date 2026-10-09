@@ -1,22 +1,22 @@
-//! Day 3: variables, mutability, constants, shadowing and data types.
-//!
-//! Replace each `todo!()` with a real implementation, then run:
-//!
-//!     cargo test -p day03
-//!
-//! All tests green = exercise done. Don't change the tests at the bottom.
+// Day 3: variables, mutability, constants, shadowing and data types.
+//
+// Replace each `todo!()` with a real implementation, then run:
+//
+//     cargo test -p day03
+//
+// All tests green = exercise done. Don't change the tests at the bottom.
 
 // Unimplemented functions don't use their parameters yet, which would cause warnings.
 // Delete this line once every exercise is done.
-#![allow(unused_variables)]
+
 
 // ---------------------------------------------------------------------------
 // Exercise 1: constants
 // Define a constant named SECONDS_PER_DAY (type u32) right here, above the function.
 // Then use it to return how many seconds are in `days` days.
-
+const SECONDS_PER_DAY : u32 = 24 * 60 * 60;
 pub fn seconds_in_days(days: u32) -> u32 {
-    todo!()
+    SECONDS_PER_DAY * days
 }
 
 // ---------------------------------------------------------------------------
@@ -27,7 +27,10 @@ pub fn seconds_in_days(days: u32) -> u32 {
 // then return it. (You'll need `mut`. Use `+=` and `-=`.)
 
 pub fn final_price(price: u32, tax: u32, discount: u32) -> u32 {
-    todo!()
+    let mut total = price;
+    total += tax;
+    total -= discount;
+    total
 }
 
 // ---------------------------------------------------------------------------
@@ -38,7 +41,9 @@ pub fn final_price(price: u32, tax: u32, discount: u32) -> u32 {
 // then return input * 2.
 
 pub fn parse_and_double(input: &str) -> i64 {
-    todo!()
+    let input = input.trim();
+    let input : i64 = input.parse().expect("not a number");
+    input * 2
 }
 
 // ---------------------------------------------------------------------------
@@ -50,15 +55,15 @@ pub fn parse_and_double(input: &str) -> i64 {
 // Look for the methods saturating_add, wrapping_add and checked_add in the lesson.
 
 pub fn add_saturating(a: u8, b: u8) -> u8 {
-    todo!()
+    a.saturating_add(b)
 }
 
 pub fn add_wrapping(a: u8, b: u8) -> u8 {
-    todo!()
+    a.wrapping_add(b)
 }
 
 pub fn add_checked_or_zero(a: u8, b: u8) -> u8 {
-    todo!()
+    a.checked_add(b).unwrap_or(0)
 }
 
 // ---------------------------------------------------------------------------
@@ -68,7 +73,7 @@ pub fn add_checked_or_zero(a: u8, b: u8) -> u8 {
 // Example: split_bill(1000, 3) == (333, 1)
 
 pub fn split_bill(total: u32, people: u32) -> (u32, u32) {
-    todo!()
+    (total/ people, total%people)
 }
 
 // ---------------------------------------------------------------------------
@@ -76,7 +81,7 @@ pub fn split_bill(total: u32, people: u32) -> (u32, u32) {
 // Return the average of the four numbers.
 
 pub fn average(nums: [f64; 4]) -> f64 {
-    todo!()
+    nums.iter().sum::<f64>() / nums.len() as f64
 }
 
 // ---------------------------------------------------------------------------
@@ -85,7 +90,7 @@ pub fn average(nums: [f64; 4]) -> f64 {
 // Example: percentage(1, 4) == 25.0. Careful: 1 / 4 in integers is 0!
 
 pub fn percentage(part: u32, whole: u32) -> f64 {
-    todo!()
+    part as f64 / whole as f64 * 100.0
 }
 
 // ---------------------------------------------------------------------------
@@ -94,7 +99,7 @@ pub fn percentage(part: u32, whole: u32) -> f64 {
 // 'a' takes 1, 'অ' (Bangla letter) takes 3, '🦀' takes 4.
 
 pub fn utf8_bytes(c: char) -> usize {
-    todo!()
+    c.len_utf8()
 }
 
 // ---------------------------------------------------------------------------
@@ -103,7 +108,8 @@ pub fn utf8_bytes(c: char) -> usize {
 // Tip: destructure with `let (number, word) = pair;`
 
 pub fn swap(pair: (i32, String)) -> (String, i32) {
-    todo!()
+    let (a, b) = pair;
+    (b, a)
 }
 
 // ---------------------------------------------------------------------------
@@ -111,7 +117,7 @@ pub fn swap(pair: (i32, String)) -> (String, i32) {
 // Return (first element, middle element, last element).
 
 pub fn first_middle_last(arr: [i32; 5]) -> (i32, i32, i32) {
-    todo!()
+    (arr[0], arr[2], arr[4])
 }
 
 // ---------------------------------------------------------------------------
@@ -119,7 +125,7 @@ pub fn first_middle_last(arr: [i32; 5]) -> (i32, i32, i32) {
 // A person can vote if they are at least 18 AND a citizen.
 
 pub fn can_vote(age: u8, is_citizen: bool) -> bool {
-    todo!()
+    is_citizen && age >= 18
 }
 
 // ===========================================================================
