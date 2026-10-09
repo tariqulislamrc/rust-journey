@@ -1,8 +1,8 @@
-//! Day 4: functions, expressions, `if`, and loops.
-//!
-//!     cargo test -p day04
-//!
-//! Replace each `todo!()`. Don't change the tests at the bottom.
+// Day 4: functions, expressions, `if`, and loops.
+//
+//   cargo test -p day04
+//
+// Replace each `todo!()`. Don't change the tests at the bottom.
 
 // Delete this line once every exercise is done.
 #![allow(unused_variables)]
@@ -12,11 +12,11 @@
 // Write the body as ONE expression with no `return` and no semicolon.
 
 pub fn celsius_to_fahrenheit(c: f64) -> f64 {
-    todo!()
+    (c * 9.0 / 5.0) + 32.0
 }
 
 pub fn fahrenheit_to_celsius(f: f64) -> f64 {
-    todo!()
+    (f - 32.0) * 5.0 / 9.0
 }
 
 // ---------------------------------------------------------------------------
@@ -25,7 +25,17 @@ pub fn fahrenheit_to_celsius(f: f64) -> f64 {
 // Try writing it as: `if ... { 'A' } else if ... { 'B' } ...` with no `return`.
 
 pub fn grade(score: u32) -> char {
-    todo!()
+    if score >= 80 {
+        'A'
+    } else if score >= 70 {
+        'B'
+    } else if score >= 60  {
+        'C'
+    } else if score >= 50 {
+        'D'
+    } else {
+        'F'
+    }
 }
 
 // ---------------------------------------------------------------------------
@@ -36,7 +46,7 @@ pub fn grade(score: u32) -> char {
 // 2024 → true, 1900 → false, 2000 → true, 2023 → false
 
 pub fn is_leap_year(year: u32) -> bool {
-    todo!()
+    year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)
 }
 
 // ---------------------------------------------------------------------------
@@ -45,7 +55,15 @@ pub fn is_leap_year(year: u32) -> bool {
 // To make a String: String::from("Fizz") and n.to_string()
 
 pub fn fizzbuzz(n: u32) -> String {
-    todo!()
+    if n.is_multiple_of(15) {
+        String::from("FizzBuzz")
+    } else if n.is_multiple_of(3) {
+        String::from("Fizz")
+    } else if n.is_multiple_of(5) {
+        String::from("Buzz")
+    } else {
+        n.to_string()
+    }
 }
 
 // ---------------------------------------------------------------------------
@@ -53,7 +71,11 @@ pub fn fizzbuzz(n: u32) -> String {
 // Return 1 + 2 + ... + n. Use a `for` loop and a `mut` total (not the n*(n+1)/2 formula).
 
 pub fn sum_to(n: u64) -> u64 {
-    todo!()
+    let mut sum = 0;
+    for i in 1..=n {
+        sum += i;
+    }
+    sum
 }
 
 // ---------------------------------------------------------------------------
@@ -61,7 +83,11 @@ pub fn sum_to(n: u64) -> u64 {
 // 0! = 1, 5! = 120. Use the range `1..=n`.
 
 pub fn factorial(n: u32) -> u64 {
-    todo!()
+    let mut factorial = 1;
+    for i in 1..=n {
+        factorial *= i as u64;
+    }
+    factorial
 }
 
 // ---------------------------------------------------------------------------
@@ -70,7 +96,18 @@ pub fn factorial(n: u32) -> u64 {
 // collatz_steps(1) == 0, collatz_steps(6) == 8  (6,3,10,5,16,8,4,2,1)
 
 pub fn collatz_steps(n: u64) -> u32 {
-    todo!()
+    let mut n = n;
+    let mut steps = 0;
+    while n != 1 {
+        if n % 2 == 0 {
+            n = n/2;
+        } else {
+            n = 3*n +1;
+        }
+        steps += 1;
+    }
+
+    steps
 }
 
 // ---------------------------------------------------------------------------
@@ -78,7 +115,13 @@ pub fn collatz_steps(n: u64) -> u32 {
 // Return the largest number in the array.
 
 pub fn largest(numbers: [i32; 6]) -> i32 {
-    todo!()
+    let mut max = numbers[0];
+    for n in numbers {
+        if n > max {
+            max = n;
+        }
+    }
+    max
 }
 
 // ---------------------------------------------------------------------------
@@ -87,7 +130,14 @@ pub fn largest(numbers: [i32; 6]) -> i32 {
 // Use `loop` and `break some_value;` so that the loop itself produces the result.
 
 pub fn first_square_over(limit: u32) -> u32 {
-    todo!()
+    let mut i : u32 = 1;
+    loop {
+        let square = i * i;
+        if square > limit {
+            break square;
+        }
+        i += 1
+    }
 }
 
 // ---------------------------------------------------------------------------
@@ -95,7 +145,16 @@ pub fn first_square_over(limit: u32) -> u32 {
 // How many numbers in from..=to are divisible by `by`?
 
 pub fn count_divisible(from: u32, to: u32, by: u32) -> u32 {
-    todo!()
+    if by == 0 {
+        return 0;
+    }
+    let mut count : u32 = 0;
+    for i in from..=to {
+        if i % by == 0 {
+            count += 1
+        }
+    }
+    count
 }
 
 // ===========================================================================
